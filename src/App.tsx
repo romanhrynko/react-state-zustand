@@ -1,4 +1,5 @@
 import { RenderBadge } from "./components/RenderBadge";
+import { TaskList } from "./components/TaskList";
 import { useRenderCount } from "./hooks/useRenderCount";
 
 function App() {
@@ -6,10 +7,14 @@ function App() {
 
   return (
     <div className="app" data-theme="light" data-density="cozy">
-      <header style={{ display: "flex", alignItems: "center", gap: 12 }}>
-        <h1 style={{ margin: 0, fontSize: 20 }}>Sprint Board</h1>
-        <RenderBadge label="App" count={renders} />
-      </header>
+      <div className="shell">
+        <header className="app-header">
+          <h1>Sprint Board</h1>
+          <RenderBadge label="App" count={renders} />
+        </header>
+
+        <TaskList />
+      </div>
     </div>
   );
 }

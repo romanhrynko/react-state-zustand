@@ -1,47 +1,224 @@
 :root {
-  --bg: #ffffff;
-  --fg: #1a1a1a;
-  --muted: #6b7280;
-  --border: #d4d4d8;
-  --surface: #f4f4f5;
+  --bg: #f6f7f9;
+  --fg: #18181b;
+  --muted: #71717a;
+  --border: #e4e4e7;
+  --surface: #ffffff;
+  --surface-alt: #f4f4f5;
   --accent: #2563eb;
+
+  --todo: #64748b;
+  --in-progress: #b45309;
+  --done: #15803d;
+
+  --radius: 10px;
 
   /* density */
   --row-padding: 12px;
   --gap: 12px;
 
-  font-family: system-ui, sans-serif;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   line-height: 1.5;
+  color-scheme: light;
 }
 
 [data-theme="dark"] {
-  --bg: #18181b;
+  --bg: #111113;
   --fg: #fafafa;
   --muted: #a1a1aa;
-  --border: #3f3f46;
-  --surface: #27272a;
+  --border: #2e2e33;
+  --surface: #1c1c1f;
+  --surface-alt: #232327;
   --accent: #60a5fa;
+
+  --todo: #94a3b8;
+  --in-progress: #fbbf24;
+  --done: #4ade80;
+
+  color-scheme: dark;
 }
 
 [data-density="compact"] {
-  --row-padding: 4px;
-  --gap: 6px;
+  --row-padding: 5px 12px;
+  --gap: 8px;
 }
 
 body {
   margin: 0;
-}
-
-.app {
-  min-height: 100vh;
-  padding: 24px;
   background: var(--bg);
   color: var(--fg);
 }
 
+.app {
+  min-height: 100vh;
+  padding: 32px 16px;
+  background: var(--bg);
+  color: var(--fg);
+}
+
+.shell {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 20px;
+  letter-spacing: -0.01em;
+}
+
+/* Panels */
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  gap: var(--gap);
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-alt);
+}
+
+.panel-header h2 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Rows */
+.task-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.task-row {
+  display: flex;
+  align-items: center;
+  gap: var(--gap);
+  padding: var(--row-padding);
+  border-bottom: 1px solid var(--border);
+}
+
+.task-row:last-child {
+  border-bottom: none;
+}
+
+.task-row:hover {
+  background: var(--surface-alt);
+}
+
+.task-title {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: text;
+}
+
+.task-title-input {
+  flex: 1;
+  min-width: 0;
+  padding: 4px 8px;
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  background: var(--surface);
+}
+
+.task-meta {
+  color: var(--muted);
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.empty {
+  padding: 24px 16px;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* Status pill doubles as the toggle button */
+.status {
+  min-width: 96px;
+  padding: 3px 10px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  background: transparent;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+}
+
+.status[data-status="todo"] {
+  color: var(--todo);
+}
+
+.status[data-status="in-progress"] {
+  color: var(--in-progress);
+}
+
+.status[data-status="done"] {
+  color: var(--done);
+}
+
+/* Controls */
 button,
 input,
 select {
   font: inherit;
   color: inherit;
+}
+
+select,
+input[type="text"],
+input[type="search"] {
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+}
+
+.icon-button {
+  padding: 2px 8px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.icon-button:hover {
+  border-color: var(--border);
+  background: var(--surface-alt);
+  color: var(--fg);
+}
+
+/* Render counter */
+.render-badge {
+  display: inline-block;
+  padding: 1px 8px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface-alt);
+  color: var(--muted);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
