@@ -1,5 +1,7 @@
+import { AddTaskForm } from "./components/AddTaskForm";
 import { RenderBadge } from "./components/RenderBadge";
 import { TaskList } from "./components/TaskList";
+import { Toolbar } from "./components/Toolbar";
 import { useRenderCount } from "./hooks/useRenderCount";
 
 function App() {
@@ -13,6 +15,8 @@ function App() {
           <RenderBadge label="App" count={renders} />
         </header>
 
+        <AddTaskForm />
+        <Toolbar />
         <TaskList />
       </div>
     </div>
