@@ -265,3 +265,17 @@ button[type="submit"]:disabled {
   color: var(--muted);
   cursor: not-allowed;
 }
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 24px;
+  padding: 12px 16px;
+}
+
+.stat {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
